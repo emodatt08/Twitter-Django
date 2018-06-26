@@ -1,0 +1,63 @@
+{% include "partials/header.html" %}
+         <div class="container">
+<div class="row" id = "posts">
+  {% for todo in todos %}  
+ <div class="col-sm-4">
+    <div class="thumbnail">
+      <img src="{{todo.filedata.url}}" alt="...">
+      <div class="caption">
+        <h3><a href="/todos/details/{{todo.id}}">{{todo.title}}</h3>
+        <p>{{todo.text|truncatechars:18}}<br/>{{todo.created_at}}</p>
+        <p><a href="#" class="btn btn-primary" role="button">Like</a> <a href="#" class="btn btn-default" role="button">Reply</a></p>
+      </div>
+    </div>
+  </div>
+  {% endfor %} 
+  <!--Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Shout</h4>
+      </div>
+      <div class="modal-body">
+        <form method = "POST" action="/todos/add/" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">title:</label>
+            <input type="text" class="form-control" id="recipient-name" name="title">
+          </div>
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">Upload:</label>
+            <input type="file" class="form-control" id="file" name="file">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">Message:</label>
+            <textarea class="form-control" id="message-text" name="text"></textarea>
+          </div>
+          <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" value="Send message"/>
+      </div>
+        </form>
+      </div>
+      
+      
+    </div>
+  </div>
+</div>
+</div>
+    </div>
+
+        
+{% include "partials/footer.html" %}
+
+
+
+
+
+
+        
+  
+
